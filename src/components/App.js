@@ -60,12 +60,22 @@ class App extends Component {
 
   }
 
+  search = (text) => {
+    axios.get(`https://practiceapi.devmountain.com/api/posts/filter?text=${text}`)
+    .then(results => {
+      this.setState({
+        posts: results.data
+      })
+    })
+  }
+
+
   render() {
     const { posts } = this.state;
 
     return (
       <div className="App__parent">
-        <Header />
+        <Header searchFn={this.search}/>
 
         <section className="App__content">
 
